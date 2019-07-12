@@ -48,24 +48,33 @@ public class EnrolmentTest {
         if (comp1531Enrolment == null)
             System.out.println("Can't enrol in COMP1531");
 
-        // Give the student a passing grade for COMP1511
-//        comp1511Enrolment.assignMark(65);
-
         // Assign marks for comp1511
         // TODO Give the student a passing mark for assignment 1
-
+        comp1511Enrolment.addGrade("ass01", 16, 20, "leaf", "none");
+        
         // TODO Give the student a passing mark for milestone 1 of assignment 2
-
+        comp1511Enrolment.addGrade("milestone1", 19, 40, "leaf", "none");
+        
         // TODO Give the student a passing mark for milestone 2 of assignment 2
-
+        comp1511Enrolment.addGrade("milestone2", 28, 40, "leaf", "none");
+        
         // TODO Give the student an assignment 2 mark which is the average of
         // milestone 1 and 2
+        comp1511Enrolment.addGrade("ass02", 0, 40, "composite", "none");
+        comp1511Enrolment.addChild("ass02", "milestone1", "average");
+        comp1511Enrolment.addChild("ass02", "milestone2", "average");
 
         // TODO Give the student a prac mark which is the sum of assignment 1
         // and 2
-
+        comp1511Enrolment.addGrade("prac", 0, 60, "composite", "none");
+        comp1511Enrolment.addChild("prac", "ass01", "sum");
+        comp1511Enrolment.addChild("prac", "ass02", "sum");
+        
         // TODO Give the student a passing exam mark.
+        comp1511Enrolment.addGrade("exam", 25, 40, "leaf", "none");
 
+        System.out.println("Our comp1511 Enrolment looks like " + comp1511Enrolment.printGrade() + " with a grade of " + comp1511Enrolment.getGrade());
+        
         // Enrol the student in 2521 (this should succeed as they have met
         // the prereqs)
         Enrolment comp2521Enrolment = comp2521Offering.enrol(student, lecture2521);
