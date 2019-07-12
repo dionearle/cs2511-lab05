@@ -24,6 +24,10 @@ public class CourseOffering {
     public Course getCourse() {
         return course;
     }
+    
+    public String getCourseName() {
+    	return course.getCourseCode();
+    }
 
     public String getTerm() {
         return term;

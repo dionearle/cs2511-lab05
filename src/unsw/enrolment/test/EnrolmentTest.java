@@ -7,6 +7,8 @@ import unsw.enrolment.Course;
 import unsw.enrolment.CourseOffering;
 import unsw.enrolment.Enrolment;
 import unsw.enrolment.Lecture;
+import unsw.enrolment.MarkLogger;
+import unsw.enrolment.Observer;
 import unsw.enrolment.Student;
 import unsw.enrolment.Tutorial;
 
@@ -37,7 +39,7 @@ public class EnrolmentTest {
 
         // Enrol the student in COMP1511 for T1 (this should succeed)
         Enrolment comp1511Enrolment = comp1511Offering.enrol(student, lecture1511);
-
+        
         if (comp1511Enrolment != null)
             System.out.println("Enrolled in COMP1511");
 
@@ -47,6 +49,10 @@ public class EnrolmentTest {
 
         if (comp1531Enrolment == null)
             System.out.println("Can't enrol in COMP1531");
+        
+        // Setting up observer for observable
+        Observer logMarks = new MarkLogger();
+        comp1511Enrolment.registerObserver(logMarks);
 
         // Assign marks for comp1511
         // TODO Give the student a passing mark for assignment 1
